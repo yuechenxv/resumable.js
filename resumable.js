@@ -35,6 +35,7 @@
     var $ = this;
     $.files = [];
     $.defaults = {
+      first:true,
       chunkSize:1*1024*1024,
       forceChunkSize:false,
       simultaneousUploads:3,
@@ -965,7 +966,11 @@
     };
     $.upload = function(){
       // Make sure we don't start too many uploads at once
-      if($.isUploading()) return;
+      if( !$.default['first'] ){
+        if($.isUploading()) return;
+      }else{
+        $.default['first'] = false;
+      }
       // Kick off the queue
       $.fire('uploadStart');
       for (var num=1; num<=$.getOpt('simultaneousUploads'); num++) {
