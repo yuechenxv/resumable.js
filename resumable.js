@@ -966,10 +966,10 @@
     };
     $.upload = function(){
       // Make sure we don't start too many uploads at once
-      if( !$.default['first'] ){
+      if( !$.defaults['first'] ){
         if($.isUploading()) return;
       }else{
-        $.default['first'] = false;
+        $.defaults['first'] = false;
       }
       // Kick off the queue
       $.fire('uploadStart');
